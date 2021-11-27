@@ -4,23 +4,16 @@ namespace DependencyInjectionWebApp.Services
 {
     public class MyService : IMyService
     {
-        public ISampleService sampleService;
+        public readonly ISampleService _sampleService;
 
         public MyService(ISampleService sampleService)
         {
-            this.sampleService = sampleService;
+           _sampleService = sampleService;
         }
-
-        //public void SetService(ISampleService sampleService)
-        //{
-        //    this.sampleService = sampleService;
-        //}
-
-
 
         public int MyFunction(int x)
         {
-            return sampleService.SampleFunction(7);
+            return _sampleService.SampleFunction(7);
         }
     }
 }

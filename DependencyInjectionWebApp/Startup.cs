@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DependencyInjectionWebApp.IServices;
+using DependencyInjectionWebApp.Services;
 
 namespace DependencyInjectionWebApp
 {
@@ -22,6 +24,10 @@ namespace DependencyInjectionWebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<ISampleService, SampleService>();
+            services.AddScoped<IMyService, MyService>();
+            
+
             services.AddControllersWithViews();
         }
 

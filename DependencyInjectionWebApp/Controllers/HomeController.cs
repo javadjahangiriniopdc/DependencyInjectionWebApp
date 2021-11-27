@@ -7,24 +7,24 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using DependencyInjectionWebApp.IServices;
 
 namespace DependencyInjectionWebApp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IMyService _myService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IMyService myService)
         {
             _logger = logger;
+            _myService = myService;
         }
 
         public IActionResult Index()
         {
-            MyService myService = new MyService(new SampleService());
-
-            //myService.sampleService = new SampleService();
-            //myService.SetService(new SampleService());
+            var date = _myService.MyFunction(10);
 
             return View();
         }
